@@ -1,7 +1,7 @@
 Summary:	CFITSIO Interface Library
 Summary(pl):	Biblioteka interfejsu CFITSIO
 Name:		cfitsio
-Version:	2.410
+Version:	2.420
 %define	sver	%(echo %{version} | tr -d .)
 Release:	1
 License:	GPL (forced only by gzip code, basically BSD-like)
