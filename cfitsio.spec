@@ -1,13 +1,13 @@
 Summary:	CFITSIO Interface Library
 Summary(pl):	Biblioteka interfejsu CFITSIO
 Name:		cfitsio
-Version:	2.440
+Version:	2.490
 %define	sver	%(echo %{version} | tr -d .)
 Release:	1
 License:	GPL (forced only by gzip code, basically BSD-like)
 Group:		Libraries
 Source0:	ftp://heasarc.gsfc.nasa.gov/software/fitsio/c/%{name}%{sver}.tar.gz
-# Source0-md5:	de455748ea6ea01d54b1e52dfc43dca6
+# Source0-md5:	271b07dcfe3e928e5138d64672eb77d9
 URL:		http://heasarc.gsfc.nasa.gov/docs/software/fitsio/fitsio.html
 BuildRequires:	gcc-g77
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -26,7 +26,7 @@ wywo³ywanie tych funkcji z programów w Fortranie.
 Summary:	Header files and documentation for CFITSIO
 Summary(pl):	Pliki nag³ówkowe i dokumentacja do CFITSIO
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files and development documentation for CFITSIO.
@@ -38,7 +38,7 @@ Pliki nag³ówkowe i dokumentacja programisty do CFITSIO.
 Summary:	Static CFITSIO library
 Summary(pl):	Statyczna biblioteka CFITSIO
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static version of CFITSIO library.
