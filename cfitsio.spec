@@ -1,7 +1,7 @@
 Summary:	CFITSIO Interface Library
 Summary(pl):	Biblioteka interfejsu CFITSIO
 Name:		cfitsio
-Version:	2.420
+Version:	2.440
 %define	sver	%(echo %{version} | tr -d .)
 Release:	1
 License:	GPL (forced only by gzip code, basically BSD-like)
@@ -51,17 +51,15 @@ Statyczna wersja biblioteki CFITSIO.
 %build
 %configure2_13
 
-%{__make} shared all
+%{__make} shared
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_libdir},%{_includedir}}
 
 %{__make} install \
-	FTOOLS_LIB=$RPM_BUILD_ROOT%{_libdir} \
-	FTOOLS_INCLUDE=$RPM_BUILD_ROOT%{_includedir}
-
-install libcfitsio.so $RPM_BUILD_ROOT%{_libdir}
+	CFITSIO_LIB=$RPM_BUILD_ROOT%{_libdir} \
+	CFITSIO_INCLUDE=$RPM_BUILD_ROOT%{_includedir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
