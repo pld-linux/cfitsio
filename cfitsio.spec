@@ -3,11 +3,12 @@ Summary(pl):	Biblioteka interfejsu CFITSIO
 Name:		cfitsio
 Version:	3.020
 %define	sver	%(echo %{version} | tr -d .)
-Release:	1
+Release:	2
 License:	GPL (forced only by gzip code, basically BSD-like)
 Group:		Libraries
 Source0:	ftp://heasarc.gsfc.nasa.gov/software/fitsio/c/%{name}%{sver}.tar.gz
 # Source0-md5:	fbc9e0db4d4b48b0a6a8de0f2036eb47
+Patch0:		%{name}-link.patch
 URL:		http://heasarc.gsfc.nasa.gov/docs/software/fitsio/fitsio.html
 BuildRequires:	gcc-g77
 BuildRequires:	sed >= 4.0
@@ -49,6 +50,7 @@ Statyczna wersja biblioteki CFITSIO.
 
 %prep
 %setup -q -n %{name}
+%patch0 -p1
 
 sed -i -e 's/ f77 xlf / gfortran f77 xlf /' configure
 
