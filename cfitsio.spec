@@ -1,5 +1,5 @@
 Summary:	CFITSIO Interface Library
-Summary(pl):	Biblioteka interfejsu CFITSIO
+Summary(pl.UTF-8):   Biblioteka interfejsu CFITSIO
 Name:		cfitsio
 Version:	3.020
 %define	sver	%(echo %{version} | tr -d .)
@@ -19,33 +19,33 @@ CFITSIO is a library of ANSI C routines for reading and writing FITS
 format data files.  A set of Fortran-callable wrapper routines are
 also included for the convenience of Fortran programmers.
 
-%description -l pl
-CFITSIO to biblioteka funkcji w C do odczytu i zapisu plik體 z danymi
-w formacie FITS. Zawiera tak縠 zestaw wrapper體 pozwalaj眂ych na
-wywo硑wanie tych funkcji z program體 w Fortranie.
+%description -l pl.UTF-8
+CFITSIO to biblioteka funkcji w C do odczytu i zapisu plik贸w z danymi
+w formacie FITS. Zawiera tak偶e zestaw wrapper贸w pozwalaj膮cych na
+wywo艂ywanie tych funkcji z program贸w w Fortranie.
 
 %package devel
 Summary:	Header files and documentation for CFITSIO
-Summary(pl):	Pliki nag丑wkowe i dokumentacja do CFITSIO
+Summary(pl.UTF-8):   Pliki nag艂贸wkowe i dokumentacja do CFITSIO
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files and development documentation for CFITSIO.
 
-%description devel -l pl
-Pliki nag丑wkowe i dokumentacja programisty do CFITSIO.
+%description devel -l pl.UTF-8
+Pliki nag艂贸wkowe i dokumentacja programisty do CFITSIO.
 
 %package static
 Summary:	Static CFITSIO library
-Summary(pl):	Statyczna biblioteka CFITSIO
+Summary(pl.UTF-8):   Statyczna biblioteka CFITSIO
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static version of CFITSIO library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna wersja biblioteki CFITSIO.
 
 %prep
