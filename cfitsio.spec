@@ -1,5 +1,5 @@
 Summary:	CFITSIO Interface Library
-Summary(pl.UTF-8):   Biblioteka interfejsu CFITSIO
+Summary(pl.UTF-8):	Biblioteka interfejsu CFITSIO
 Name:		cfitsio
 Version:	3.020
 %define	sver	%(echo %{version} | tr -d .)
@@ -26,7 +26,7 @@ wywoływanie tych funkcji z programów w Fortranie.
 
 %package devel
 Summary:	Header files and documentation for CFITSIO
-Summary(pl.UTF-8):   Pliki nagłówkowe i dokumentacja do CFITSIO
+Summary(pl.UTF-8):	Pliki nagłówkowe i dokumentacja do CFITSIO
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -38,7 +38,7 @@ Pliki nagłówkowe i dokumentacja programisty do CFITSIO.
 
 %package static
 Summary:	Static CFITSIO library
-Summary(pl.UTF-8):   Statyczna biblioteka CFITSIO
+Summary(pl.UTF-8):	Statyczna biblioteka CFITSIO
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
