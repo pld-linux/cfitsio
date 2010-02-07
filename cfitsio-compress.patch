@@ -1,0 +1,11 @@
+--- compress.c.orig	2010-02-07 20:31:12.369980145 +0000
++++ compress.c	2010-02-07 20:28:57.869998302 +0000
+@@ -3510,7 +3510,7 @@
+ local void fill_window   OF((void));
+ local ulg deflate_fast   OF((void));
+ 
+-      int  longest_match OF((IPos cur_match));
++local int  longest_match OF((IPos cur_match));
+ #ifdef ASMV
+       void match_init OF((void)); /* asm code initialization */
+ #endif
