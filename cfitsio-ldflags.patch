@@ -1,0 +1,11 @@
+--- Makefile.in~	2010-02-07 21:27:47.036321982 +0000
++++ Makefile.in	2010-02-07 21:33:30.832955494 +0000
+@@ -32,7 +32,7 @@
+ CC =		@CC@
+ CFLAGS =	@CFLAGS@
+ FC =		@FC@
+-LDFLAGS =	$(CFLAGS)
++LDFLAGS =	@LDFLAGS@
+ DEFS =		@DEFS@
+ LIBS =		@LIBS@
+ FLEX =		flex
