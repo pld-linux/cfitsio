@@ -4,8 +4,8 @@
  shared: libcfitsio${SHLIB_SUFFIX}
  
  libcfitsio${SHLIB_SUFFIX}: ${OBJECTS}
--		${SHLIB_LD} -o $@ ${OBJECTS}
-+		${SHLIB_LD} -o $@ ${OBJECTS} -lm
+-		${SHLIB_LD} ${LDFLAGS} -o $@ ${OBJECTS}
++		${SHLIB_LD} ${LDFLAGS} -o $@ ${OBJECTS} -lm
  
  install:	libcfitsio.a $(INSTALL_DIRS)
  		@if [ -f libcfitsio.a ]; then \
