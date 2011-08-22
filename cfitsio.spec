@@ -1,19 +1,19 @@
 Summary:	CFITSIO Interface Library
 Summary(pl.UTF-8):	Biblioteka interfejsu CFITSIO
 Name:		cfitsio
-Version:	3.250
+Version:	3.280
 %define	sver	%(echo %{version} | tr -d .)
 Release:	1
-License:	GPL (forced only by gzip code, basically BSD-like)
+License:	MIT-like
 Group:		Libraries
 Source0:	ftp://heasarc.gsfc.nasa.gov/software/fitsio/c/%{name}%{sver}.tar.gz
-# Source0-md5:	1e6e390f21fab4e04781156fddcd2f8b
+# Source0-md5:	fdb9c0f51678b47e78592c70fb5dc793
 Patch0:		%{name}-link.patch
 Patch1:		%{name}-ldflags.patch
-Patch2:		%{name}-compress.patch
+Patch2:		%{name}-zlib.patch
 URL:		http://heasarc.gsfc.nasa.gov/docs/software/fitsio/fitsio.html
 BuildRequires:	gcc-g77
-BuildRequires:	sed >= 4.0
+BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -31,6 +31,7 @@ Summary:	Header files and documentation for CFITSIO
 Summary(pl.UTF-8):	Pliki nagłówkowe i dokumentacja do CFITSIO
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	zlib-devel
 
 %description devel
 Header files and development documentation for CFITSIO.
@@ -54,9 +55,10 @@ Statyczna wersja biblioteki CFITSIO.
 %setup -q -n %{name}
 %patch0 -p1
 %patch1 -p0
-%patch2 -p0
+%patch2 -p1
 
-sed -i -e 's/ f77 xlf / gfortran f77 xlf /' configure
+# enforce headers from system zlib
+%{__rm} crc32.h deflate.h inffast.h inffixed.h inflate.h inftrees.h zconf.h zlib.h zutil.h
 
 %build
 %configure
