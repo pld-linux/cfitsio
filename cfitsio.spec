@@ -1,15 +1,14 @@
 Summary:	CFITSIO Interface Library
 Summary(pl.UTF-8):	Biblioteka interfejsu CFITSIO
 Name:		cfitsio
-Version:	3.370
+Version:	3.380
 %define	sver	%(echo %{version} | tr -d .)
-Release:	2
+Release:	1
 License:	MIT-like
 Group:		Libraries
 Source0:	ftp://heasarc.gsfc.nasa.gov/software/fitsio/c/%{name}%{sver}.tar.gz
-# Source0-md5:	abebd2d02ba5b0503c633581e3bfa116
-Patch0:		%{name}-ldflags.patch
-Patch1:		%{name}-zlib.patch
+# Source0-md5:	a974409d527c0c527c88c12175786d21
+Patch0:		%{name}-zlib.patch
 URL:		http://heasarc.gsfc.nasa.gov/docs/software/fitsio/fitsio.html
 BuildRequires:	gcc-g77
 BuildRequires:	zlib-devel
@@ -52,8 +51,7 @@ Statyczna wersja biblioteki CFITSIO.
 
 %prep
 %setup -q -n %{name}
-%patch0 -p0
-%patch1 -p1
+%patch0 -p1
 
 # enforce headers from system zlib
 %{__rm} zlib/{crc32.h,deflate.h,inffast.h,inffixed.h,inflate.h,inftrees.h,zconf.h,zlib.h,zutil.h}
@@ -81,7 +79,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc License.txt README docs/changes.txt
 %attr(755,root,root) %{_libdir}/libcfitsio.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libcfitsio.so.2
+%attr(755,root,root) %ghost %{_libdir}/libcfitsio.so.4
 
 %files devel
 %defattr(644,root,root,755)

@@ -1,6 +1,6 @@
---- cfitsio/Makefile.in.orig	2014-11-13 20:35:55.016255682 +0100
-+++ cfitsio/Makefile.in	2014-11-13 20:41:17.506242144 +0100
-@@ -63,9 +63,8 @@
+--- cfitsio/Makefile.in.orig	2016-01-08 18:27:12.000000000 +0100
++++ cfitsio/Makefile.in	2016-03-17 16:48:57.669945464 +0100
+@@ -66,9 +66,8 @@
  		pliocomp.c fits_hcompress.c fits_hdecompress.c \
  		simplerng.c
  
@@ -12,10 +12,10 @@
  
  SOURCES = ${CORE_SOURCES} ${ZLIB_SOURCES} @F77_WRAPPERS@
  
-@@ -98,7 +97,7 @@
- shared: libcfitsio${SHLIB_SUFFIX}
+@@ -101,7 +100,7 @@
+ shared: lib${PACKAGE}${SHLIB_SUFFIX}
  
- libcfitsio${SHLIB_SUFFIX}: ${OBJECTS}
+ lib${PACKAGE}${SHLIB_SUFFIX}: ${OBJECTS}
 -		${SHLIB_LD} ${LDFLAGS} -o ${CFITSIO_SHLIB} ${OBJECTS} -lm ${LIBS}
 +		${SHLIB_LD} ${LDFLAGS} -o ${CFITSIO_SHLIB} ${OBJECTS} -lm -lz ${LIBS}
  		@if [ "x${CFITSIO_SHLIB_SONAME}" != x ]; then \
