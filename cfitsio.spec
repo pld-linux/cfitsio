@@ -1,13 +1,13 @@
 Summary:	CFITSIO Interface Library
 Summary(pl.UTF-8):	Biblioteka interfejsu CFITSIO
 Name:		cfitsio
-Version:	3.380
+Version:	3.390
 %define	sver	%(echo %{version} | tr -d .)
 Release:	1
 License:	MIT-like
 Group:		Libraries
 Source0:	ftp://heasarc.gsfc.nasa.gov/software/fitsio/c/%{name}%{sver}.tar.gz
-# Source0-md5:	a974409d527c0c527c88c12175786d21
+# Source0-md5:	e92dd2a4282a1c50d46167041a29fc67
 Patch0:		%{name}-zlib.patch
 URL:		http://heasarc.gsfc.nasa.gov/docs/software/fitsio/fitsio.html
 BuildRequires:	gcc-g77
@@ -79,7 +79,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc License.txt README docs/changes.txt
 %attr(755,root,root) %{_libdir}/libcfitsio.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libcfitsio.so.4
+%attr(755,root,root) %ghost %{_libdir}/libcfitsio.so.5
 
 %files devel
 %defattr(644,root,root,755)
