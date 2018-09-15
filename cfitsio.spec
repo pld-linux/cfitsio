@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	Biblioteka interfejsu CFITSIO
 Name:		cfitsio
 Version:	3.420
 %define	sver	%(echo %{version} | tr -d .)
-Release:	1
+Release:	2
 License:	MIT-like
 Group:		Libraries
 Source0:	https://heasarc.gsfc.nasa.gov/FTP/software/fitsio/c/%{name}%{sver}.tar.gz
