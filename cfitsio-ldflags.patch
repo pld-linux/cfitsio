@@ -1,0 +1,11 @@
+--- cfitsio/configure.in.orig	2018-05-09 21:16:00.000000000 +0200
++++ cfitsio/configure.in	2018-12-19 18:34:11.086617382 +0100
+@@ -175,7 +175,7 @@
+   fi
+ fi
+ AC_PROG_CC
+-LDFLAGS="$CFLAGS"
++LDFLAGS="$LDFLAGS $CFLAGS"
+ LDFLAGS_BIN="$LDFLAGS"
+ 
+ if test "x$FC" = "xnone" ; then

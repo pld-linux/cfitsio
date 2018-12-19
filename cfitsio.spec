@@ -1,15 +1,20 @@
+# TODO: gsiftp support?
 Summary:	CFITSIO Interface Library
 Summary(pl.UTF-8):	Biblioteka interfejsu CFITSIO
 Name:		cfitsio
-Version:	3.420
+Version:	3.450
 %define	sver	%(echo %{version} | tr -d .)
-Release:	2
+Release:	1
 License:	MIT-like
 Group:		Libraries
 Source0:	https://heasarc.gsfc.nasa.gov/FTP/software/fitsio/c/%{name}%{sver}.tar.gz
-# Source0-md5:	26e5c0dfb85b8d00f536e706305caa13
+# Source0-md5:	f470849bb43561d9a9b1925eeb7f7f0d
 Patch0:		%{name}-zlib.patch
+Patch1:		%{name}-ldflags.patch
 URL:		https://heasarc.gsfc.nasa.gov/docs/software/fitsio/fitsio.html
+BuildRequires:	autoconf
+BuildRequires:	bzip2-devel
+BuildRequires:	curl-devel
 BuildRequires:	gcc-g77
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -52,12 +57,15 @@ Statyczna wersja biblioteki CFITSIO.
 %prep
 %setup -q -n %{name}
 %patch0 -p1
+%patch1 -p1
 
 # enforce headers from system zlib
 %{__rm} zlib/{crc32.h,deflate.h,inffast.h,inffixed.h,inflate.h,inftrees.h,zconf.h,zlib.h,zutil.h}
 
 %build
-%configure
+%{__autoconf}
+%configure \
+	--with-bzip2
 
 %{__make} shared
 
@@ -79,11 +87,11 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc License.txt README docs/changes.txt
 %attr(755,root,root) %{_libdir}/libcfitsio.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libcfitsio.so.5
+%attr(755,root,root) %ghost %{_libdir}/libcfitsio.so.7
 
 %files devel
 %defattr(644,root,root,755)
-%doc docs/{cfitsio.doc,cfitsio.ps,fitsio.doc,fitsio.ps,quick.ps}
+%doc docs/{cfortran.doc,cfitsio.ps,fitsio.doc,fitsio.ps,quick.ps}
 %attr(755,root,root) %{_libdir}/libcfitsio.so
 %{_includedir}/drvrsmem.h
 %{_includedir}/fitsio*.h
