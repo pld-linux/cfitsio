@@ -2,15 +2,12 @@
 Summary:	CFITSIO Interface Library
 Summary(pl.UTF-8):	Biblioteka interfejsu CFITSIO
 Name:		cfitsio
-# add "0" to to version to avoid epoch bumps after 3.450
-%define	sver	3.49
-Version:	%{sver}0
+Version:	4.0.0
 Release:	1
 License:	MIT-like
 Group:		Libraries
-Source0:	https://heasarc.gsfc.nasa.gov/FTP/software/fitsio/c/%{name}-%{sver}.tar.gz
-# Source0-md5:	171860ffed8c1a396fc497d853f285c1
-Patch0:		%{name}-zlib.patch
+Source0:	https://heasarc.gsfc.nasa.gov/FTP/software/fitsio/c/%{name}-%{version}.tar.gz
+# Source0-md5:	7b2d4855208a1029f9ad21afdbbb690b
 Patch1:		%{name}-ldflags.patch
 URL:		https://heasarc.gsfc.nasa.gov/docs/software/fitsio/fitsio.html
 BuildRequires:	autoconf
@@ -56,12 +53,8 @@ Static version of CFITSIO library.
 Statyczna wersja biblioteki CFITSIO.
 
 %prep
-%setup -q -n %{name}-%{sver}
-%patch0 -p1
+%setup -q
 %patch1 -p1
-
-# enforce headers from system zlib
-%{__rm} zlib/{crc32.h,deflate.h,inffast.h,inffixed.h,inflate.h,inftrees.h,zconf.h,zlib.h,zutil.h}
 
 %build
 %{__autoconf}
