@@ -1,9 +1,9 @@
---- cfitsio/configure.in.orig	2018-05-09 21:16:00.000000000 +0200
-+++ cfitsio/configure.in	2018-12-19 18:34:11.086617382 +0100
-@@ -175,7 +175,7 @@
-   fi
- fi
- AC_PROG_CC
+--- cfitsio-4.2.0/configure.in.orig	2018-05-09 21:16:00.000000000 +0200
++++ cfitsio-4.2.0/configure.in	2018-12-19 18:34:11.086617382 +0100
+@@ -225,7 +225,7 @@ fi
+ 
+ #-------------------------------------------------------------------------------
+ 
 -LDFLAGS="$CFLAGS"
 +LDFLAGS="$LDFLAGS $CFLAGS"
  LDFLAGS_BIN="$LDFLAGS"
