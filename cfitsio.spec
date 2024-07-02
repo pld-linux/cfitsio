@@ -2,12 +2,12 @@
 Summary:	CFITSIO Interface Library
 Summary(pl.UTF-8):	Biblioteka interfejsu CFITSIO
 Name:		cfitsio
-Version:	4.4.0
+Version:	4.4.1
 Release:	1
 License:	MIT-like
 Group:		Libraries
 Source0:	https://heasarc.gsfc.nasa.gov/FTP/software/fitsio/c/%{name}-%{version}.tar.gz
-# Source0-md5:	de5393e0bd939d56e029ea0857de3e76
+# Source0-md5:	e6676f6b2a077fa970540ebe1f86ddd7
 Patch1:		%{name}-ldflags.patch
 URL:		https://heasarc.gsfc.nasa.gov/docs/software/fitsio/fitsio.html
 BuildRequires:	autoconf
@@ -79,7 +79,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README.md docs/changes.txt licenses/NASA_Open_Source_Agreement_1.3.txt
+%doc README.md docs/changes.txt licenses/License.txt
 %attr(755,root,root) %{_libdir}/libcfitsio.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libcfitsio.so.10
 
