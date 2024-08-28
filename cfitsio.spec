@@ -2,15 +2,13 @@
 Summary:	CFITSIO Interface Library
 Summary(pl.UTF-8):	Biblioteka interfejsu CFITSIO
 Name:		cfitsio
-Version:	4.4.1
+Version:	4.5.0
 Release:	1
 License:	MIT-like
 Group:		Libraries
 Source0:	https://heasarc.gsfc.nasa.gov/FTP/software/fitsio/c/%{name}-%{version}.tar.gz
-# Source0-md5:	e6676f6b2a077fa970540ebe1f86ddd7
-Patch1:		%{name}-ldflags.patch
+# Source0-md5:	c8be725bf1f2edabb5765a53ec9cd1b8
 URL:		https://heasarc.gsfc.nasa.gov/docs/software/fitsio/fitsio.html
-BuildRequires:	autoconf
 BuildRequires:	bzip2-devel
 BuildRequires:	curl-devel
 BuildRequires:	gcc-g77
@@ -54,22 +52,27 @@ Statyczna wersja biblioteki CFITSIO.
 
 %prep
 %setup -q
-%patch1 -p1
 
 %build
-%{__autoconf}
 %configure \
 	--with-bzip2
 
-%{__make} shared
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_libdir},%{_includedir}}
 
 %{__make} install \
-	CFITSIO_LIB=$RPM_BUILD_ROOT%{_libdir} \
-	CFITSIO_INCLUDE=$RPM_BUILD_ROOT%{_includedir}
+	DESTDIR=$RPM_BUILD_ROOT
+
+# obsoleted by pkg-config
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libcfitsio.la
+
+# too common names; if needed, use subdir for cfitsio headers
+%{__rm} $RPM_BUILD_ROOT%{_includedir}/{cfortran,f77_wrap}.h
+
+# testing tools
+%{__rm} $RPM_BUILD_ROOT%{_bindir}/{cookbook,smem,speed}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -79,7 +82,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README.md docs/changes.txt licenses/License.txt
+%doc ChangeLog README.md licenses/License.txt
+%attr(755,root,root) %{_bindir}/fitscopy
+%attr(755,root,root) %{_bindir}/fitsverify
+%attr(755,root,root) %{_bindir}/fpack
+%attr(755,root,root) %{_bindir}/funpack
+%attr(755,root,root) %{_bindir}/imcopy
 %attr(755,root,root) %{_libdir}/libcfitsio.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libcfitsio.so.10
 
@@ -90,6 +98,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/drvrsmem.h
 %{_includedir}/fitsio*.h
 %{_includedir}/longnam.h
+%{_includedir}/region.h
 %{_pkgconfigdir}/cfitsio.pc
 
 %files static
