@@ -1,4 +1,8 @@
 # TODO: gsiftp support?
+#
+# Conditional build:
+%bcond_without	static_libs	# static library
+
 Summary:	CFITSIO Interface Library
 Summary(pl.UTF-8):	Biblioteka interfejsu CFITSIO
 Name:		cfitsio
@@ -12,6 +16,7 @@ URL:		https://heasarc.gsfc.nasa.gov/docs/software/fitsio/fitsio.html
 BuildRequires:	bzip2-devel
 BuildRequires:	curl-devel
 BuildRequires:	gcc-g77
+BuildRequires:	rpmbuild(macros) >= 1.527
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -55,6 +60,7 @@ Statyczna wersja biblioteki CFITSIO.
 
 %build
 %configure \
+	%{__enable_disable static_libs static} \
 	--with-bzip2
 
 %{__make}
@@ -101,6 +107,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/region.h
 %{_pkgconfigdir}/cfitsio.pc
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libcfitsio.a
+%endif
