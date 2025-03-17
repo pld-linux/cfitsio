@@ -1,4 +1,4 @@
-# TODO: gsiftp support?
+# TODO: gsiftp support? (--with-gsiftp, --with-gsiftp-flavour=$flavour; BR: libglobus_ftp_client_${flavour}; https://github.com/gridcf/gct/ etc.)
 #
 # Conditional build:
 %bcond_without	static_libs	# static library
@@ -6,12 +6,12 @@
 Summary:	CFITSIO Interface Library
 Summary(pl.UTF-8):	Biblioteka interfejsu CFITSIO
 Name:		cfitsio
-Version:	4.5.0
+Version:	4.6.0
 Release:	1
 License:	MIT-like
 Group:		Libraries
 Source0:	https://heasarc.gsfc.nasa.gov/FTP/software/fitsio/c/%{name}-%{version}.tar.gz
-# Source0-md5:	c8be725bf1f2edabb5765a53ec9cd1b8
+# Source0-md5:	de394d50aeb61427d76208a91dac1cbe
 URL:		https://heasarc.gsfc.nasa.gov/docs/software/fitsio/fitsio.html
 BuildRequires:	bzip2-devel
 BuildRequires:	curl-devel
