@@ -6,12 +6,12 @@
 Summary:	CFITSIO Interface Library
 Summary(pl.UTF-8):	Biblioteka interfejsu CFITSIO
 Name:		cfitsio
-Version:	4.6.0
+Version:	4.6.2
 Release:	1
 License:	MIT-like
 Group:		Libraries
 Source0:	https://heasarc.gsfc.nasa.gov/FTP/software/fitsio/c/%{name}-%{version}.tar.gz
-# Source0-md5:	de394d50aeb61427d76208a91dac1cbe
+# Source0-md5:	38e1510bf8e19fd3b7fabebf84009287
 URL:		https://heasarc.gsfc.nasa.gov/docs/software/fitsio/fitsio.html
 BuildRequires:	bzip2-devel
 BuildRequires:	curl-devel
