@@ -6,12 +6,12 @@
 Summary:	CFITSIO Interface Library
 Summary(pl.UTF-8):	Biblioteka interfejsu CFITSIO
 Name:		cfitsio
-Version:	4.6.2
+Version:	4.6.3
 Release:	1
 License:	MIT-like
 Group:		Libraries
 Source0:	https://heasarc.gsfc.nasa.gov/FTP/software/fitsio/c/%{name}-%{version}.tar.gz
-# Source0-md5:	38e1510bf8e19fd3b7fabebf84009287
+# Source0-md5:	1f95e471cf89403ff877ab58a788ad69
 URL:		https://heasarc.gsfc.nasa.gov/docs/software/fitsio/fitsio.html
 BuildRequires:	bzip2-devel
 BuildRequires:	curl-devel
@@ -94,13 +94,13 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/fpack
 %attr(755,root,root) %{_bindir}/funpack
 %attr(755,root,root) %{_bindir}/imcopy
-%attr(755,root,root) %{_libdir}/libcfitsio.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libcfitsio.so.10
+%{_libdir}/libcfitsio.so.*.*.*
+%ghost %{_libdir}/libcfitsio.so.10
 
 %files devel
 %defattr(644,root,root,755)
 %doc docs/{cfitsio.pdf,cfortran.doc,fitsio.pdf,fpackguide.pdf,quick.pdf}
-%attr(755,root,root) %{_libdir}/libcfitsio.so
+%{_libdir}/libcfitsio.so
 %{_includedir}/drvrsmem.h
 %{_includedir}/fitsio*.h
 %{_includedir}/longnam.h
