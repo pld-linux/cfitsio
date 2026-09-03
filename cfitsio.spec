@@ -1,22 +1,27 @@
 # TODO: gsiftp support? (--with-gsiftp, --with-gsiftp-flavour=$flavour; BR: libglobus_ftp_client_${flavour}; https://github.com/gridcf/gct/ etc.)
 #
 # Conditional build:
+%bcond_without	apidocs		# API documentation
 %bcond_without	static_libs	# static library
 
 Summary:	CFITSIO Interface Library
 Summary(pl.UTF-8):	Biblioteka interfejsu CFITSIO
 Name:		cfitsio
-Version:	4.6.3
+Version:	4.7.0
 Release:	1
 License:	MIT-like
 Group:		Libraries
 Source0:	https://heasarc.gsfc.nasa.gov/FTP/software/fitsio/c/%{name}-%{version}.tar.gz
-# Source0-md5:	1f95e471cf89403ff877ab58a788ad69
+# Source0-md5:	52617014210a73b0a935cb4b0a9fd800
 URL:		https://heasarc.gsfc.nasa.gov/docs/software/fitsio/fitsio.html
 BuildRequires:	bzip2-devel
 BuildRequires:	curl-devel
 BuildRequires:	gcc-g77
+BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.527
+%if %{with apidocs}
+BuildRequires:	texlive-format-pdflatex
+%endif
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -55,6 +60,18 @@ Static version of CFITSIO library.
 %description static -l pl.UTF-8
 Statyczna wersja biblioteki CFITSIO.
 
+%package apidocs
+Summary:	API documentation for CFITSIO library
+Summary(pl.UTF-8):	Dokumentacja API biblioteki CFITSIO
+Group:		Documentation
+BuildArch:	noarch
+
+%description apidocs
+C and Fortran API documentation for CFITSIO library.
+
+%description apidocs -l pl.UTF-8
+Dokumentacja API języka C i Fortran do biblioteki CFITSIO.
+
 %prep
 %setup -q
 
@@ -64,6 +81,13 @@ Statyczna wersja biblioteki CFITSIO.
 	--with-bzip2
 
 %{__make}
+
+%if %{with apidocs}
+cd docs
+pdflatex cfitsio.tex
+pdflatex fitsio.tex
+pdflatex quick.tex
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -88,7 +112,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog README.md licenses/License.txt
+%doc ChangeLog README.md SECURITY.md licenses/License.txt
 %attr(755,root,root) %{_bindir}/fitscopy
 %attr(755,root,root) %{_bindir}/fitsverify
 %attr(755,root,root) %{_bindir}/fpack
@@ -99,7 +123,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc docs/{cfitsio.pdf,cfortran.doc,fitsio.pdf,fpackguide.pdf,quick.pdf}
+%doc docs/{cfortran.doc,fpackguide.md}
 %{_libdir}/libcfitsio.so
 %{_includedir}/drvrsmem.h
 %{_includedir}/fitsio*.h
@@ -111,4 +135,10 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libcfitsio.a
+%endif
+
+%if %{with apidocs}
+%files apidocs
+%defattr(644,root,root,755)
+%doc docs/{cfitsio,fitsio,quick}.pdf
 %endif
